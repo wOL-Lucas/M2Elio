@@ -2,8 +2,7 @@ package Entities;
 
 import Database.connector;
 import lombok.Getter;
-
-import javax.swing.plaf.nimbus.State;
+import Utilities.InputGetter;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -119,29 +118,6 @@ public class Library {
             ));
         }
         return costumers;
-    }
-
-
-    public boolean costumerLogin(String username, String password) {
-
-        for (Costumer costumer : costumers) {
-            if (costumer.getUsername().equals(username) && costumer.getPassword().equals(password)) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    public boolean workerLogin(String username, String password) {
-
-        for (Worker worker : workers) {
-            if (worker.getUsername().equals(username) && worker.getPassword().equals(password)) {
-                return true;
-            }
-        }
-
-        return false;
     }
 
 
