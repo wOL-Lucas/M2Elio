@@ -147,7 +147,6 @@ public class Library {
 
     public boolean rentBook(Costumer costumer, Book book) throws SQLException {
         if(!book.isRented()){
-            System.out.println("idCostumer: " + costumer.getId() + " idBook: " + book.getId());
 
             PreparedStatement statement = this.connection.prepareStatement("INSERT INTO Rents (costumer_id, book_id) VALUES (?, ?)");
             statement.setInt(1, costumer.getId());
@@ -169,7 +168,6 @@ public class Library {
     }
 
     public boolean returnBook(Costumer costumer, Book book) throws SQLException {
-        System.out.println(book.isRented());
 
         if(book.isRented()){
             PreparedStatement statement = this.connection.prepareStatement("UPDATE Rents SET return_date = ? WHERE costumer_id = ? AND book_id = ?");
@@ -200,7 +198,6 @@ public class Library {
         for(Costumer c : costumers){
             if(costumer.getUsername().equals(c.getUsername()) && costumer.getPassword().equals(c.getPassword())){
                 renewedCostumer = c;
-                System.out.println("renewedCostumer: " + renewedCostumer.toString());
             }
         }
 
@@ -210,20 +207,14 @@ public class Library {
     public Book getBookById(List<Book> books, int id){
         Book book = null;
 
-        System.out.println("id: " + id);
-
         while(book == null){
             for(Book b : books){
                 if(b.getId() == id){
                     book = b;
                     break;
                 }
-                else{
-                    System.out.println("id: " + b.getId());
-                }
             }
             if(book != null){
-                System.out.println("book: " + book.toString());
                 return book;
             }
 
@@ -252,7 +243,6 @@ public class Library {
                     String username = InputGetter.getString("Please enter your username");
                     String password = InputGetter.getString("Please enter your password");
 
-                    System.out.println("costumers: " + costumers.size());
 
                     for(Costumer costumer : costumers){
                         if(costumer.getUsername().equals(username) && costumer.getPassword().equals(password)){
